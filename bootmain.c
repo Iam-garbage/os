@@ -42,7 +42,7 @@ void readsect(void *dst, uint offset)
 }
 
 //在偏移处offset读取count个字节数量 然后装载到pa指向的物理内存
-//pa=0x100000
+//pa=0x10000
 //count=0x1000
 //offset=0
 //pa+count -> 0x10000+0x1000=0x110000
@@ -52,14 +52,14 @@ void readseg(uchar* pa, uint count, uint offset)
     
     epa=pa+count;//epa=0x11000
 
-    //下调至sector边界
-    //pa = 0x10000/0x200 = 0x80
-    pa -= offset % SECTSIZE; //0x80
+    //下调至sector边界 存访不是kernel文件的东西
+    //pa = 0x10000-0x10000/0x200
+    pa -= offset % SECTSIZE;
 
     //将kernel放在第一个扇区
     offset=(offset/SECTSIZE)+1;
 
-    //按照每512字节读 先读取第一个扇区
+    //按照每512字节读 先读取第一个扇区 一共八个 0x200*8=0x1000
     for(; pa < epa; pa += SECTSIZE, offset++)
       readsect(pa, offset);
 }
