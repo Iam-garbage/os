@@ -23,7 +23,7 @@ void bootmain(void)
 
 
 
-
+// 读取磁盘
 // 读取一个位于offset的扇区放入dst里面
 void readsect(void *dst, uint offset)
 {
@@ -59,6 +59,7 @@ void readseg(uchar* pa, uint count, uint offset)
     //将kernel放在第一个扇区
     offset=(offset/SECTSIZE)+1;
 
+    //按照每512字节读 先读取第一个扇区
     for(; pa < epa; pa += SECTSIZE, offset++)
-    readsect(pa, offset);
+      readsect(pa, offset);
 }
