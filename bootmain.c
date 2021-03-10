@@ -1,5 +1,7 @@
 #include "elf.h"
 #include "types.h"
+#include "x86.h"
+
 #define SECTSIZE  512 //0x200
 
 
@@ -23,8 +25,11 @@ void bootmain(void)
 
 
 
-// 读取磁盘
+// 读取主磁盘
 // 读取一个位于offset的扇区放入dst里面
+
+// 主硬盘分配端口号为 0x1f0-0x1f7 一共八位
+// 副硬盘分配端口号为 0x170-0x177 一共八位
 void readsect(void *dst, uint offset)
 {
   // Issue command.
