@@ -1,7 +1,8 @@
 ## Tyos
     
   参考代码 [xv6](https://github.com/mit-pdos/xv6-public)
-  
+## 你可能所需要的阅读操作系统的基本知识
+* [汇编](https://github.com/TgeaUs/os/blob/main/Basicknowledge/Basicknowledge.md)
 ## 阅读顺序
 * 启动盘
     * bootmain.S 是以16为cpu操作模式切换成32位 距离内容初始化了寄存器 + 32位模式保护模式所需要的段 + 一个C语言所需要的栈
